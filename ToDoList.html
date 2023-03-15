@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ToDoList</title>
+  <style>
+    header {
+      width: 50%;
+      background-color: #b3d4fc;
+    }
+
+    h1 {
+      text-align: center;
+    }
+    form {
+      width: 100%;
+      margin: 10px;
+      padding-bottom: 10px;
+      font-size: 24pt;
+    }
+
+    #list {
+      font-family: sans-serif;
+      font-size: 14pt;
+    }
+
+    div {
+      margin: 10px;
+      padding-bottom: 10px;
+    }
+
+    img {
+      display: inline-block;
+      float: right;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>ToDo List</h1>
+  <form id="myForm">
+    <label for="enter"></label>
+    <input type="text" id="enter">
+    <button type="button" id="add">Add</button>
+  </form>
+  <div id="list"></div>
+</header>
+
+
+<script>
+  let add = document.getElementById('add');
+  let element = document.getElementById("list");
+  let addNewTask = function () {
+    let text = document.getElementById('enter').value;
+    let para = document.createElement("div");
+    let node = document.createTextNode(text);
+    let cross = document.createElement("img");
+
+    cross.setAttribute("src", "img/cross.png");
+    para.appendChild(node);
+    element.appendChild(para).appendChild(cross);
+    document.getElementById('myForm').reset();
+  }
+  add.addEventListener('click', addNewTask);
+
+
+  let delCross = document.getElementsByTagName('img');
+  let deleteTask = function (e) {
+    if (e.target.childElementCount === 0) {
+      e.target.remove();
+    }
+    let listRemove = element.children;
+    for (let i = 0; i < listRemove.length; i++) {
+      if (listRemove[i].childElementCount === 0) {
+        console.log(listRemove[i]);
+        listRemove[i].style.textDecorationLine = "line-through";
+        let rem = function () {
+          listRemove[i].remove()
+        };
+        setTimeout(rem, 1000);
+      }
+    }
+  }
+  element.addEventListener('click', deleteTask, false);
+</script>
+
+</body>
+</html>

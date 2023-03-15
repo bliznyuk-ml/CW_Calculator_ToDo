@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <style>
+    #monitor {
+      width: 445px;
+      height: 50px;
+      border-radius: 5px;
+      border: 1px solid blue;
+      background-color: #b3d4fc;
+      font-size: 20pt;
+      font-family: sans-serif;
+      font-weight: bold;
+      line-height: 50px;
+      text-align: center;
+      margin: 10px;
+    }
+
+    .num {
+      height: 60px;
+      width: 60px;
+      margin: 10px;
+      font-size: 20pt;
+    }
+
+    .zero {
+      height: 60px;
+      width: 230px;
+      margin: 10px;
+      font-size: 20pt;
+    }
+
+    .res {
+      height: 60px;
+      width: 145px;
+      margin: 10px;
+      font-size: 20pt;
+    }
+
+    #numbers {
+      width: 300px;
+      float: left;
+    }
+
+  </style>
+
+</head>
+<body>
+<div id='monitor'></div>
+<div id='numbers'>
+  <input id='1' class='num' type="button" value="1">
+  <input id='2' class='num' type="button" value="2">
+  <input id='3' class='num' type="button" value="3"><br/>
+  <input id='4' class='num' type="button" value="4">
+  <input id='5' class='num' type="button" value="5">
+  <input id='6' class='num' type="button" value="6"><br/>
+  <input id='7' class='num' type="button" value="7">
+  <input id='8' class='num' type="button" value="8">
+  <input id='9' class='num' type="button" value="9"><br/>
+  <input id='0' class='zero' type="button" value="0">
+</div>
+<div id='actions'>
+  <input id='back' class='num' type="button" value="&#9003;">
+  <input id='reset' class='num' type="button" value="c"><br/>
+  <input id='plus' class='num' type="button" value="+">
+  <input id='multiply' class='num' type="button" value="*"><br/>
+  <input id='minus' class='num' type="button" value="-">
+  <input id='divide' class='num' type="button" value="/"><br/>
+  <input id='result' class='res' type="button" value="=">
+</div>
+
+
+<script>
+  let number = document.getElementById('numbers');
+  let display = function (e) {
+    if (e.target) {
+      document.getElementById('monitor').innerHTML += e.target.value;
+    }
+  }
+  number.addEventListener('click', display);
+
+
+  let action = document.getElementById('actions');
+  display = function (e) {
+    let res = document.getElementById('result');
+    let back = document.getElementById('back');
+    let reset = document.getElementById('reset');
+
+    if (e.target != res && e.target != back && e.target != reset) {
+      document.getElementById('monitor').innerHTML += e.target.value;
+    }
+  }
+  action.addEventListener('click', display);
+
+
+  let res = document.getElementById('result');
+  let result = function () {
+    let total = document.getElementById('monitor').innerHTML;
+    document.getElementById('monitor').innerHTML += ' = ' + eval(total);
+  }
+  res.addEventListener('click', result);
+
+
+  let reset = document.getElementById('reset');
+  let reset1 = function () {
+    document.getElementById('monitor').innerHTML = '';
+  }
+  reset.addEventListener('click', reset1);
+
+</script>
+</body>
+</html>
