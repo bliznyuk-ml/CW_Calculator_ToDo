@@ -12,6 +12,7 @@
     h1 {
       text-align: center;
     }
+
     form {
       width: 100%;
       margin: 10px;
@@ -22,6 +23,10 @@
     #list {
       font-family: sans-serif;
       font-size: 14pt;
+    }
+
+    input {
+      width: 80%;
     }
 
     div {
@@ -53,13 +58,13 @@
   let element = document.getElementById("list");
   let addNewTask = function () {
     let text = document.getElementById('enter').value;
-    let para = document.createElement("div");
+    let task = document.createElement("div");
     let node = document.createTextNode(text);
     let cross = document.createElement("img");
 
     cross.setAttribute("src", "img/cross.png");
-    para.appendChild(node);
-    element.appendChild(para).appendChild(cross);
+    task.appendChild(node);
+    element.appendChild(task).appendChild(cross);
     document.getElementById('myForm').reset();
   }
   add.addEventListener('click', addNewTask);
